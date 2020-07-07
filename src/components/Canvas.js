@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import CanvasDraw from "react-canvas-draw"
 
 export default class Canvas extends Component {
+
   render() {
     return (
       <div>
