@@ -1,17 +1,36 @@
-import React, { Component } from 'react'
-import CanvasDraw from "react-canvas-draw"
+import React, { Component } from "react";
+import CanvasDraw from "react-canvas-draw";
 
 export default class Canvas extends Component {
+  state = {
+    saveData: null,
+  };
+
+  fetchPostFunction = (data) => {
+    const config = {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        Accept: "application/json",
+      },
+      body: {
+        data_url: data,
+      },
+    };
+    fetch("http://localhost:3000/sketchbooks", config);
+  };
+
   render() {
     return (
       <div>
-        <div>    
+        <div>
           <button
             onClick={() => {
-              localStorage.setItem(
-                "savedDrawing",
-                this.saveableCanvas.getSaveData()
-              );
+              this.setState({
+                saveData: this.saveableCanvas.getSaveData(),
+              });
+              console.log(this.saveableCanvas.getSaveData());
+              this.fetchPostFunction(this.saveableCanvas.getSaveData());
             }}
           >
             Save
@@ -44,6 +63,7 @@ export default class Canvas extends Component {
         </div>
 
         <CanvasDraw
+          saveData={this.state.saveData}
           ref={(canvasDraw) => (this.saveableCanvas = canvasDraw)}
           brushColor={this.props.color}
           brushRadius={this.props.brushRadius}
@@ -53,6 +73,6 @@ export default class Canvas extends Component {
           hideGrid={this.props.hideGrid}
         />
       </div>
-    )
+    );
   }
 }
