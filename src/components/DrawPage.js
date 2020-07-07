@@ -3,6 +3,8 @@ import React, {Component} from 'react'
 import Canvas from './Canvas'
 import ColorPicker from './ColorPicker' 
 
+const canvas = document.getElementById('canvas');
+
 export default class DrawPage extends Component {
     state = {
         // Canvas
