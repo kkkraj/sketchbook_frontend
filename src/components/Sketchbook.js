@@ -98,7 +98,7 @@ class Sketchbook extends Component {
             />
           </div>
         </div>
-        <Toolbox />
+
         <CanvasDraw
           // hideGrid
           ref={(canvasDraw) => (this.saveableCanvas = canvasDraw)}
@@ -108,6 +108,7 @@ class Sketchbook extends Component {
           canvasWidth={this.state.width}
           canvasHeight={this.state.height}
         />
+        <Toolbox />
         {/* <p>
           The following is a disabled canvas with a hidden grid that we use to
           load & show your saved drawing.
