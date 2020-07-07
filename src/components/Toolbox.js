@@ -1,9 +1,8 @@
 import React, { Component } from "react";
+import { CirclePicker } from "react-color";
 
-export class Toolbox extends Component {
+export default class Toolbox extends Component {
   render() {
-    return <div></div>;
+    return <CirclePicker onClick={this.props.handleClick} />;
   }
 }
-
-export default Toolbox;
