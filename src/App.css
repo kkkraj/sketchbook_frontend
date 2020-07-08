@@ -1,15 +1,19 @@
 .App {
   margin: 0;
   text-align: center;
-  width:100%
+  width: 100%;
 }
 
 h1 {
   color: white;
 }
 
+ul {
+  list-style-type: none;
+}
+
 button {
-  background-color: #e7e7e7; 
+  background-color: #e7e7e7;
   color: black;
   font-size: 16px;
   border: none;
@@ -32,24 +36,24 @@ label {
 }
 
 #nav {
-	width: 100%;
-	float: left;
-	margin: 0 0 3em 0;
-	padding: 0;
-  list-style: none; 
+  width: 100%;
+  float: left;
+  margin: 0 0 3em 0;
+  padding: 0;
+  list-style: none;
 }
 
 #nav li {
-  float: left; 
+  float: left;
 }
 
 #nav li a {
-		display: block;
-		padding: 8px 15px;
-		text-decoration: none;
-		font-weight: bold;
-		color: while;
-    border-right: 1px solid #ccc; 
+  display: block;
+  padding: 8px 15px;
+  text-decoration: none;
+  font-weight: bold;
+  color: while;
+  border-right: 1px solid #ccc;
 }
 
 #nav li a:hover {
@@ -57,12 +61,12 @@ label {
 }
 
 #nav li a {
-		display: block;
-		padding: 8px 15px;
-		text-decoration: none;
-		font-weight: bold;
-		color:white;
-    border-right: 1px solid #ccc; 
+  display: block;
+  padding: 8px 15px;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  border-right: 1px solid #ccc;
 }
 
 /* #footer {
