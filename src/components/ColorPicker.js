@@ -3,7 +3,7 @@
 import React, {Component} from 'react'
 import {SketchPicker} from 'react-color';
 
-export default class ColorPicker extends Component {
+export default class Toolbox extends Component {
     render() {
         return (
             <div>

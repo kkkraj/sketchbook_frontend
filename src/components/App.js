@@ -3,8 +3,8 @@ import "../App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import DrawPage from "./DrawPage";
-import NavBar from "./NavBar";
-import Footer from "./Footer";
+// import NavBar from "./NavBar";
+// import Footer from "./Footer";
 import Gallery from "./Gallery";
 import User from "./User";
 import Toggle from "./Toggle";
