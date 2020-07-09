@@ -3,18 +3,16 @@ import "../App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import DrawPage from "./DrawPage";
-// import NavBar from "./NavBar";
-// import Footer from "./Footer";
 import Gallery from "./Gallery";
 import User from "./User";
 import Toggle from "./Toggle";
 
 export default class App extends Component {
   state = {
-    users: [],
-  };
+    drawings: []
+  }
 
-  addNewUser = (newuser) => {
+addNewUser = (newuser) => {
     console.log(newuser);
     fetch("http://localhost:3000/users", {
       method: "POST",
@@ -44,6 +42,23 @@ export default class App extends Component {
   logOutUser = () => {
     localStorage.clear();
   };
+
+
+  componentDidMount() {
+    fetch("http://localhost:3000/sketchbooks")
+      .then((resp) => resp.json())
+      .then((drawings) => this.setState({
+        drawings: drawings
+      }))
+  }
+
+  handleDeleteClick = (drawing) => {
+    fetch(`http://localhost:3000/sketchbooks/${drawing.id}` , {method: "DELETE"})
+
+    const artworks = this.state.drawings.filter((artwork) => (artwork.id !== drawing.id))
+
+    this.setState({ drawings: artworks })
+  }
 
   render() {
     return (
@@ -90,7 +105,9 @@ export default class App extends Component {
                 }}
               />
               <Route exact path="/sketchpad" component={DrawPage} />
-              <Route exact path="/gallery" component={Gallery} />
+              <Route exact path="/gallery" render = {() => {
+                return <Gallery artworkData={this.state.drawings} handleDeleteClick={this.handleDeleteClick}/>
+              }} />
             </Switch>
             {/* <div style={{ display: "none" }}>
               <User addNewUser={this.addNewUser} />
@@ -99,13 +116,6 @@ export default class App extends Component {
         </Router>
       </div>
 
-      // <div className="App">
-      //   <NavBar />
-      //   <h1>Sketch Pad</h1>
-      //   <DrawPage />
-      //   {/* <Footer /> */}
-      //   <Gallery />
-      // </div>
     );
   }
 }

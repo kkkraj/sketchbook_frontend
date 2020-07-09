@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import CanvasDraw from "react-canvas-draw";
-import Gallery from './Gallery'
 
 export default class Canvas extends Component {
   state = {
@@ -62,7 +61,6 @@ export default class Canvas extends Component {
         </div>
 
         <CanvasDraw
-          // saveData={this.state.saveData}
           ref={(canvasDraw) => (this.saveableCanvas = canvasDraw)}
           brushColor={this.props.color}
           brushRadius={this.props.brushRadius}
@@ -72,7 +70,6 @@ export default class Canvas extends Component {
           hideGrid={this.props.hideGrid}
         />
         <div>
-          <Gallery artworkData={this.state.saveData}/>
         </div>
       </div>
     );
