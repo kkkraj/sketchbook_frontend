@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import CanvasDraw from "react-canvas-draw";
+import Gallery from './Gallery'
 
 export default class Canvas extends Component {
   state = {
-    saveData: null,
-    savedCanvasArray: [],
+    saveData: [],
   };
+
+  handleCanvasSaveDataClick = () => {
+    const newDrawing = this.saveableCanvas.getSaveData()
+    this.setState((previousState) => {
+      return {saveData: [...previousState.saveData, newDrawing]}
+    });
+    this.handleFetchPostCanvasToBackEnd(newDrawing)
+  }
 
   handleFetchPostCanvasToBackEnd = (data) => {
     const destinationUrl = "http://localhost:3000/sketchbooks"
@@ -14,46 +22,32 @@ export default class Canvas extends Component {
       headers: {
         Authorization: localStorage.getItem("token"),
         Accept: "application/json",
+        "Content-Type": "application/json"
       },
-      body: {
-        data_url: data,
-        user_id: 10,
-        gallery_id: 20
-      }
+      body: JSON.stringify({
+        sketchbook: {
+          data_url: data,
+          user_id: 5,
+          gallery_id: 1
+        }
+      })
     };
     fetch(destinationUrl, configObj);
   };
-
 
   render() {
     return (
       <div>
         <div>
-          <button
-            onClick={() => {
-              this.setState({
-                saveData: this.saveableCanvas.getSaveData(),
-              });
-              console.log(this.saveableCanvas.getSaveData());
-              this.handleFetchPostCanvasToBackEnd(this.saveableCanvas.getSaveData());
-            }}
-          >
+          <button onClick={this.handleCanvasSaveDataClick} >
             Save
           </button>
 
-          <button
-            onClick={() => {
-              this.saveableCanvas.clear();
-            }}
-          >
+          <button onClick={() => {this.saveableCanvas.clear();}} >
             Clear
           </button>
 
-          <button
-            onClick={() => {
-              this.saveableCanvas.undo();
-            }}
-          >
+          <button onClick={() => { this.saveableCanvas.undo(); }} >
             Undo
           </button>
 
@@ -77,6 +71,9 @@ export default class Canvas extends Component {
           canvasHeight={this.props.canvasHeight}
           hideGrid={this.props.hideGrid}
         />
+        <div>
+          <Gallery artworkData={this.state.saveData}/>
+        </div>
       </div>
     );
   }
