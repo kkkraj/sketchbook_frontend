@@ -1,27 +1,28 @@
 import React, { Component } from "react";
 import CanvasDraw from "react-canvas-draw";
+import Grid from "@material-ui/core/Grid";
 
-export default class Gallery extends Component {
-
-  render() { 
+const Gallery = ({artworkData, handleDeleteClick}) => {
     return (
       <div>
         <h1>Gallery Page</h1>
         {
-          this.props.artworkData.map((m) => {
-            return (<CanvasDraw
-            key={m}
-            disabled
-            hideGrid
-            saveData={m}
-          />)
+          artworkData.reverse().map((drawing) => {
+            return (
+            <Grid container direction="column" justify="space-between" alignItems="center">
+              <CanvasDraw
+                key={drawing.id}
+                hideGrid
+                disabled
+                immediateLoading={true}
+                saveData={drawing.data_url}
+              />
+              <button onClick={() => handleDeleteClick(drawing)}>Delete</button>
+            </Grid>)
           })
-    
         }
-        
-       
       </div>
-    );
-  }
+    )
 }
 
+export default Gallery
