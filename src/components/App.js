@@ -10,6 +10,41 @@ import User from "./User";
 import Toggle from "./Toggle";
 
 export default class App extends Component {
+  state = {
+    users: [],
+  };
+
+  addNewUser = (newuser) => {
+    console.log(newuser);
+    fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user: newuser }),
+    });
+    this.setState({ users: [newuser, ...this.state.users] });
+  };
+
+  loginUser = (userinfo) => {
+    fetch("http://localhost:3000/auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user: userinfo }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem("token", data.jwt);
+        localStorage.setItem("id", data.id);
+      });
+  };
+
+  logOutUser = () => {
+    localStorage.clear();
+  };
+
   render() {
     return (
       <div className="App">
@@ -40,11 +75,26 @@ export default class App extends Component {
               </ul>
             </nav>
             <hr />
+
             <Switch>
-              <Route exact path="/" component={User} />
+              <Route
+                exact
+                path="/"
+                render={() => {
+                  return (
+                    <User
+                      loginUser={this.loginUser}
+                      addNewUser={this.addNewUser}
+                    />
+                  );
+                }}
+              />
               <Route exact path="/sketchpad" component={DrawPage} />
               <Route exact path="/gallery" component={Gallery} />
             </Switch>
+            {/* <div style={{ display: "none" }}>
+              <User addNewUser={this.addNewUser} />
+            </div> */}
           </div>
         </Router>
       </div>

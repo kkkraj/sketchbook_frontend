@@ -50,7 +50,6 @@ export default class DrawPage extends Component {
     return (
       <div>
         <Grid container direction="row" justify="center" alignItems="center">
-          >
           <div>
             <Container fixed>
               <ColorPicker

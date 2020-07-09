@@ -20,7 +20,7 @@ export class User extends Component {
             {({ on, toggle }) => (
               <div>
                 <button onClick={toggle}> Sign UP</button>
-                {on && <Signup on={on} />}
+                {on && <Signup addNewUser={this.props.addNewUser} on={on} />}
               </div>
             )}
           </Toggle>
@@ -29,7 +29,7 @@ export class User extends Component {
             {({ on, toggle }) => (
               <div>
                 <button onClick={toggle}> Login</button>
-                {on && <Login on={on} />}
+                {on && <Login loginUser={this.props.loginUser} on={on} />}
               </div>
             )}
           </Toggle>
