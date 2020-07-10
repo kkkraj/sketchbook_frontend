@@ -80,10 +80,8 @@ import Logout from "./Logout";
       <div className="App">
         <Router>
           <div>
-            {/* <h1>Sketch Pad</h1> */}
             <nav
               id="nav"
-              className="navbar navbar-expand-lg navbar-light bg-light"
             >
               <ul className="navbar-nav mr-auto">
                 <li>
@@ -107,12 +105,14 @@ import Logout from "./Logout";
                     Logout
                   </Link>
                 </li>
-                <li id="logo">
+                <li className="logo">
                   Live Canvas
                 </li>
               </ul>
             </nav>
-            {/* <hr /> */}
+            <div id="line">
+              <hr />
+            </div>
 
             <Switch>
               <Route exact path="/logout" component={Logout} />

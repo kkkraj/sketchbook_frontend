@@ -4,8 +4,8 @@ import Grid from "@material-ui/core/Grid";
 
 const Gallery = ({ artworkData, handleDeleteClick }) => {
   return (
-    <div>
-      <h1>Gallery Page</h1>
+    <div className="body">
+      <p className="headertext">Artwork Gallery</p>
       {artworkData.map((drawing) => {
         return (
           <Grid

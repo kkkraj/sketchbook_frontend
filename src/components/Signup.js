@@ -27,24 +27,26 @@ class Signup extends Component {
             this.handleSubmit(e);
           }}
         >
-          <h1>Sign Up</h1>
+          <br/>
+          <p className="signuplogin">Sign Up</p>
+          <div className="field">
+            <label>Name: </label>
+            <input
+              value={this.state.username}
+              onChange={this.handleInputChange}
+              name="username"
+            />
+            <br></br>
+            <label>Password: </label>
+            <input
+              value={this.state.password}
+              onChange={this.handleInputChange}
+              type="password"
+              name="password"
+            />
+          </div>
           <br></br>
-          <label>Name: </label>
-          <input
-            value={this.state.username}
-            onChange={this.handleInputChange}
-            name="username"
-          />
-          <br></br>
-          <label>Password: </label>
-          <input
-            value={this.state.password}
-            onChange={this.handleInputChange}
-            type="password"
-            name="password"
-          />
-          <br></br>
-          <input type="submit" />
+          <input className="submit" type="submit" />
         </form>
       </div>
     );
