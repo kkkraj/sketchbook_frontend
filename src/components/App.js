@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import DrawPage from "./DrawPage";
 import Gallery from "./Gallery";
 import User from "./User";
-import Toggle from "./Toggle";
 import Logout from "./Logout";
 
   export default class App extends Component {
@@ -81,36 +80,39 @@ import Logout from "./Logout";
       <div className="App">
         <Router>
           <div>
-            <h1>Sketch Pad</h1>
+            {/* <h1>Sketch Pad</h1> */}
             <nav
               id="nav"
               className="navbar navbar-expand-lg navbar-light bg-light"
             >
               <ul className="navbar-nav mr-auto">
                 <li>
-                  <Link to={"/"} className="nav-link">
+                  <Link to={"/"} className="nav-item">
                     {" "}
                     Login{" "}
                   </Link>
                 </li>
                 <li>
-                  <Link to={"/sketchpad"} className="nav-link">
+                  <Link to={"/sketchpad"} className="nav-item">
                     Sketchpad
                   </Link>
                 </li>
                 <li>
-                  <Link to={"/gallery"} className="nav-link">
+                  <Link to={"/gallery"} className="nav-item">
                     Gallery
                   </Link>
                 </li>
                 <li>
-                  <Link to={"/logout"} className="nav-link">
+                  <Link to={"/logout"} className="nav-item">
                     Logout
                   </Link>
                 </li>
+                <li id="logo">
+                  Live Canvas
+                </li>
               </ul>
             </nav>
-            <hr />
+            {/* <hr /> */}
 
             <Switch>
               <Route exact path="/logout" component={Logout} />

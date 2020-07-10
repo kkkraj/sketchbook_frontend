@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Grand+Hotel&family=Sacramento&family=Yeseva+One&display=swap');
+
 .App {
   margin: 0;
   text-align: center;
@@ -28,7 +30,7 @@ button {
 
 button:hover {
   color: white;
-  background-color: slategray;
+  background-color: rgb(142, 153, 165);
 }
 
 label {
@@ -47,24 +49,25 @@ label {
   float: left;
 }
 
-#nav li a {
-  display: block;
-  padding: 8px 15px;
-  text-decoration: none;
-  font-weight: bold;
-  color: while;
-  border-right: 1px solid #ccc;
-}
-
 #nav li a:hover {
   color: rgb(173, 216, 230);
 }
 
 #nav li a {
   display: block;
-  padding: 8px 15px;
+  padding: 10px 20px;
   text-decoration: none;
   font-weight: bold;
   color: white;
   border-right: 1px solid #ccc;
+}
+
+#nav li#logo {
+  /* font-family: 'Sacramento', cursive; */
+  font-family: 'Grand Hotel', cursive;
+  float: right;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  padding: 3px 50px 5px 0px;
 }
