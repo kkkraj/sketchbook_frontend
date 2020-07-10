@@ -7,29 +7,29 @@ export default class Canvas extends Component {
   };
 
   handleCanvasSaveDataClick = () => {
-    const newDrawing = this.saveableCanvas.getSaveData()
+    const newDrawing = this.saveableCanvas.getSaveData();
     this.setState((previousState) => {
-      return {saveData: [...previousState.saveData, newDrawing]}
+      return { saveData: [...previousState.saveData, newDrawing] };
     });
-    this.handleFetchPostCanvasToBackEnd(newDrawing)
-  }
+    this.handleFetchPostCanvasToBackEnd(newDrawing);
+  };
 
   handleFetchPostCanvasToBackEnd = (data) => {
-    const destinationUrl = "http://localhost:3000/sketchbooks"
+    const destinationUrl = "http://localhost:3000/sketchbooks";
     const configObj = {
       method: "POST",
       headers: {
         Authorization: localStorage.getItem("token"),
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         sketchbook: {
           data_url: data,
-          user_id: 5,
-          gallery_id: 1
-        }
-      })
+          user_id: localStorage.getItem("id"),
+          gallery_id: 1,
+        },
+      }),
     };
     fetch(destinationUrl, configObj);
   };
@@ -38,15 +38,21 @@ export default class Canvas extends Component {
     return (
       <div>
         <div>
-          <button onClick={this.handleCanvasSaveDataClick} >
-            Save
-          </button>
+          <button onClick={this.handleCanvasSaveDataClick}>Save</button>
 
-          <button onClick={() => {this.saveableCanvas.clear();}} >
+          <button
+            onClick={() => {
+              this.saveableCanvas.clear();
+            }}
+          >
             Clear
           </button>
 
-          <button onClick={() => { this.saveableCanvas.undo(); }} >
+          <button
+            onClick={() => {
+              this.saveableCanvas.undo();
+            }}
+          >
             Undo
           </button>
 
@@ -69,8 +75,7 @@ export default class Canvas extends Component {
           canvasHeight={this.props.canvasHeight}
           hideGrid={this.props.hideGrid}
         />
-        <div>
-        </div>
+        <div></div>
       </div>
     );
   }
