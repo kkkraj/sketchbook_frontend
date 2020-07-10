@@ -7,12 +7,12 @@ import Gallery from "./Gallery";
 import User from "./User";
 import Toggle from "./Toggle";
 
-export default class App extends Component {
+  export default class App extends Component {
   state = {
     drawings: []
   }
 
-addNewUser = (newuser) => {
+  addNewUser = (newuser) => {
     console.log(newuser);
     fetch("http://localhost:3000/users", {
       method: "POST",
@@ -109,9 +109,6 @@ addNewUser = (newuser) => {
                 return <Gallery artworkData={this.state.drawings} handleDeleteClick={this.handleDeleteClick}/>
               }} />
             </Switch>
-            {/* <div style={{ display: "none" }}>
-              <User addNewUser={this.addNewUser} />
-            </div> */}
           </div>
         </Router>
       </div>
