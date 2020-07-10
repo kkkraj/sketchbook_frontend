@@ -1,9 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Grand+Hotel&family=Sacramento&family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&family=Cabin+Sketch&family=Grand+Hotel&family=Sacramento&family=Yeseva+One&display=swap');
 
 .App {
   margin: 0;
   text-align: center;
   width: 100%;
+}
+
+.body {
+  padding: 50px 50px 10px 50px;
 }
 
 h1 {
@@ -15,7 +19,7 @@ ul {
 }
 
 button {
-  background-color: #e7e7e7;
+  background-color: seashell;
   color: black;
   font-size: 16px;
   border: none;
@@ -30,7 +34,7 @@ button {
 
 button:hover {
   color: white;
-  background-color: rgb(142, 153, 165);
+  background-color:rgb(255, 169, 134);
 }
 
 label {
@@ -40,9 +44,9 @@ label {
 #nav {
   width: 100%;
   float: left;
-  margin: 0 0 3em 0;
   padding: 0;
   list-style: none;
+  margin: 5px 0px 0px 0px;
 }
 
 #nav li {
@@ -55,19 +59,52 @@ label {
 
 #nav li a {
   display: block;
-  padding: 10px 20px;
+  padding: 15px 20px;
   text-decoration: none;
   font-weight: bold;
   color: white;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid lightsalmon;
 }
 
-#nav li#logo {
-  /* font-family: 'Sacramento', cursive; */
+#line {
+  color: black
+}
+
+#nav li.logo {
   font-family: 'Grand Hotel', cursive;
   float: right;
-  color: white;
+  color: rgb(173, 216, 230);
   font-weight: bold;
-  font-size: 40px;
-  padding: 3px 50px 5px 0px;
+  font-size: 42px;
+  padding: 0px 50px 10px 50px;
+}
+
+#nav li.logo:hover {
+  color: lightsalmon;
+}
+
+hr {
+  margin: 20px 20px 20px 20px;
+}
+
+.headertext {
+  color: white;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 38px;
+}
+
+.signuplogin {
+  color: white;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 28px;
+}
+
+.field {
+  margin: 0;
+  text-align: left;
+}
+
+.submit:hover {
+  color: white;
+  background-color: LightSlateGrey;
 }

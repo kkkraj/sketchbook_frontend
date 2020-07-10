@@ -29,7 +29,7 @@ export default class DrawPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="body">
         <Grid container direction="row" justify="center" alignItems="center">
           <div>
             <Container fixed>
