@@ -6,11 +6,13 @@ import DrawPage from "./DrawPage";
 import Gallery from "./Gallery";
 import User from "./User";
 import Toggle from "./Toggle";
+import Logout from "./Logout";
 
   export default class App extends Component {
   state = {
-    drawings: []
-  }
+    drawings: [],
+    auth: { currentUser: {} },
+  };
 
   addNewUser = (newuser) => {
     console.log(newuser);
@@ -34,31 +36,45 @@ import Toggle from "./Toggle";
     })
       .then((res) => res.json())
       .then((data) => {
+        const currentUser = { currentUser: data };
+
+        this.setState({ auth: currentUser });
+        console.log(data.user.id);
         localStorage.setItem("token", data.jwt);
-        localStorage.setItem("id", data.id);
+        localStorage.setItem("id", data.user.id);
       });
   };
 
   logOutUser = () => {
     localStorage.clear();
+    this.setState({ auth: { currentUser: {} } });
   };
 
-
   componentDidMount() {
-    fetch("http://localhost:3000/sketchbooks")
+    fetch("http://localhost:3000/sketchbooks", {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
       .then((resp) => resp.json())
-      .then((drawings) => this.setState({
-        drawings: drawings
-      }))
+      .then((drawings) =>
+        this.setState({
+          drawings: drawings,
+        })
+      );
   }
 
   handleDeleteClick = (drawing) => {
-    fetch(`http://localhost:3000/sketchbooks/${drawing.id}` , {method: "DELETE"})
+    fetch(`http://localhost:3000/sketchbooks/${drawing.id}`, {
+      method: "DELETE",
+    });
 
-    const artworks = this.state.drawings.filter((artwork) => (artwork.id !== drawing.id))
+    const artworks = this.state.drawings.filter(
+      (artwork) => artwork.id !== drawing.id
+    );
 
-    this.setState({ drawings: artworks })
-  }
+    this.setState({ drawings: artworks });
+  };
 
   render() {
     return (
@@ -74,7 +90,7 @@ import Toggle from "./Toggle";
                 <li>
                   <Link to={"/"} className="nav-link">
                     {" "}
-                    Home{" "}
+                    Login{" "}
                   </Link>
                 </li>
                 <li>
@@ -87,11 +103,18 @@ import Toggle from "./Toggle";
                     Gallery
                   </Link>
                 </li>
+                <li>
+                  <Link to={"/logout"} className="nav-link">
+                    Logout
+                  </Link>
+                </li>
               </ul>
             </nav>
             <hr />
 
             <Switch>
+              <Route exact path="/logout" component={Logout} />
+
               <Route
                 exact
                 path="/"
@@ -104,15 +127,38 @@ import Toggle from "./Toggle";
                   );
                 }}
               />
+              {/* <Route
+                path="/"
+                render={() => {
+                  const loggedIn = !this.state.auth.currentUser.id;
+
+                  return loggedIn ? (
+                    <Logout logOutUser={this.logOutUser} />
+                  ) : (
+                    <User
+                      loginUser={this.loginUser}
+                      addNewUser={this.addNewUser}
+                    />
+                  );
+                }}
+              /> */}
               <Route exact path="/sketchpad" component={DrawPage} />
-              <Route exact path="/gallery" render = {() => {
-                return <Gallery artworkData={this.state.drawings} handleDeleteClick={this.handleDeleteClick}/>
-              }} />
+              <Route
+                exact
+                path="/gallery"
+                render={() => {
+                  return (
+                    <Gallery
+                      artworkData={this.state.drawings}
+                      handleDeleteClick={this.handleDeleteClick}
+                    />
+                  );
+                }}
+              />
             </Switch>
           </div>
         </Router>
       </div>
-
     );
   }
 }
