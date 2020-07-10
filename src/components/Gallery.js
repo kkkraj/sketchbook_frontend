@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import CanvasDraw from "react-canvas-draw";
 import Grid from "@material-ui/core/Grid";
 
